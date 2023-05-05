@@ -1,4 +1,24 @@
 #!/bin/bash -x
+
+# Get output filename
+OUTPUT=${1:-scan-$(date +%F).pdf}
+prefix=${OUTPUT%.pdf}
+OUTPUT=${prefix}.pdf
+n=1
+while [[ -e "$OUTPUT" ]]
+do
+  ((n++))
+  OUTPUT=${prefix}-$n.pdf
+done
+
+WORK_DIR=$(mktemp -d -t scan-XXXXXXXXXX)
+if [[ ! "$WORK_DIR" || ! -d "$WORK_DIR" ]]
+then
+  echo "failed to create temporary working directory"
+  exit 1
+fi
+echo "WORK_DIR is $WORK_DIR"
+pushd $WORK_DIR
 scanimage -d 'brother4:net1;dev0' --batch --batch-double
 read -p "Flip papers in the feeder, last page on top, press Enter..."
 endpage=$(echo "$(ls *.pnm -1 | wc -l) * 2" | bc)
@@ -7,3 +27,6 @@ for file in *.pnm; do convert $file $file.jpg; done
 rm *.pnm
 convert $(ls *.jpg -1v | paste) -compress jpeg -page A4 output.pdf
 rm *.jpg
+popd
+cp $WORK_DIR/output.pdf $OUTPUT
+rm -rf $WORK_DIR
