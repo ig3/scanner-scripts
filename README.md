@@ -1,6 +1,42 @@
-This is a bash script for scanning duplex documents.
+This is a collection of script for scanning from my Brother DCP-7065DN
+scanner from Debian linux.
 
-It works for my scanner.
+# Installation
+
+Copy the scripts to any directory on your path.
+
+For example, if ~/bin is on your path, copy them to ~/bin, otherwise
+/usr/local/bin is likely to be on your path.
+
+# scan-duplex
+
+This scans multiple pages of double sided documents, producing a single PDF.
+
+Load the documents into the feeder then run `scan-duplex`. It will read
+the front side of all pages then prompt you to flip the documents and
+re-feed them. It will then read the back side of all documents and produce
+a single PDF document as output.
+
+Default output file name is YYYY-MM-DD-scan.pdf.
+
+The output file name may be specified on the command line.
+
+For example: `scan-duplex my-file.pdf`
+
+# scan-multi
+
+This scans multiple pages of single sided documents, producing a single PDF.
+
+Load the documents into the feeder then run `scan-multi`. It will read
+the front side of all pages then produce a single PDF document as output.
+
+Default output file name is YYYY-MM-DD-scan.pdf.
+
+The output file name may be specified on the command line.
+
+For example: `scan-multi my-file.pdf`
+
+# Errors
 
 If you get error:
 
