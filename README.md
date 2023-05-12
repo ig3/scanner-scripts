@@ -8,6 +8,12 @@ Copy the scripts to any directory on your path.
 For example, if ~/bin is on your path, copy them to ~/bin, otherwise
 /usr/local/bin is likely to be on your path.
 
+You will probably have to update the device. For my system, it is
+`brother4:net1;dev0`.
+
+To get a list of devices for your system run: `scanimage -L`, then update
+the scripts with the name of your device.
+
 # Dependencies
 
 These scripts depend on:
