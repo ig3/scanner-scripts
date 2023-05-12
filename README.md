@@ -8,6 +8,14 @@ Copy the scripts to any directory on your path.
 For example, if ~/bin is on your path, copy them to ~/bin, otherwise
 /usr/local/bin is likely to be on your path.
 
+# Dependencies
+
+These scripts depend on:
+
+ * scanimage: from package `sane-utils`
+ * bc: from package `bc`
+ * convert: from package `imagemagick`
+
 # scan-duplex
 
 This scans multiple pages of double sided documents, producing a single PDF.
